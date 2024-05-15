@@ -1,4 +1,5 @@
 ﻿using System.CommandLine;
+using FinancialData.Commands.Database;
 using FinancialData.Commands.Projection;
 using FinancialData.Commands.Projects;
 
@@ -40,24 +41,49 @@ public static class Program
     // TODO add account amount
     // TODO regole per aumentare purpose in modo automatico (aumento mensile e massimo)
 
-    #region Projection commands
+    var commands = new List<Command>();
 
-    var projectionCommand = new Command(
-      "projection",
-      "Gets the projection for every balance at the given date")
-    {
+    CreateDatabaseCommands(
+      commands,
+      dataPathOption);
+    CreateProjectionCommands(
+      commands,
       dataPathOption,
       projectedDateOption
-    };
-    projectionCommand.SetHandler(
-      ProjectionCommand.Execute,
+    );
+    CreateProjectCommands(
+      commands,
       dataPathOption,
-      projectedDateOption);
+      nameOption,
+      dateOption,
+      amountOption);
 
-    #endregion
+    return commands;
+  }
 
-    #region Project commands
+  private static void CreateDatabaseCommands(
+    ICollection<Command> commands,
+    Option<string> dataPathOption)
+  {
+    var clearDatabaseCommand = new Command(
+      "database-clear",
+      "Clears the database, all data will be lost")
+    {
+      dataPathOption
+    };
+    clearDatabaseCommand.SetHandler(
+      ClearDatabaseCommand.Execute,
+      dataPathOption);
+    commands.Add(clearDatabaseCommand);
+  }
 
+  private static void CreateProjectCommands(
+    ICollection<Command> commands,
+    Option<string> dataPathOption,
+    Option<string> nameOption,
+    Option<DateTime> dateOption,
+    Option<decimal> amountOption)
+  {
     var addProjectCommand = new Command(
       "project-add",
       "Adds a new financial project.")
@@ -69,6 +95,7 @@ public static class Program
       AddProjectCommand.Execute,
       dataPathOption,
       nameOption);
+    commands.Add(addProjectCommand);
 
     var listProjectCommand = new Command(
       "project-list",
@@ -79,6 +106,7 @@ public static class Program
     listProjectCommand.SetHandler(
       ListProjectCommand.Execute,
       dataPathOption);
+    commands.Add(listProjectCommand);
 
     var readProjectCommand = new Command(
       "project-read",
@@ -91,6 +119,7 @@ public static class Program
       ReadProjectCommand.Execute,
       dataPathOption,
       nameOption);
+    commands.Add(readProjectCommand);
 
     var addProjectAmountCommand = new Command(
       "project-add-amount",
@@ -107,23 +136,41 @@ public static class Program
       nameOption,
       dateOption,
       amountOption);
-
-    #endregion
-
-    #region Balance commands
-
-    #endregion
-
-    return new[]
+    commands.Add(addProjectAmountCommand);
+    
+    var autoUpdateProjectAmountCommand = new Command(
+      "project-auto-update-amount",
+      "Update the amount for a project up to the given date")
     {
-      // Projection
-      projectionCommand,
-      // Projects
-      addProjectCommand,
-      listProjectCommand,
-      readProjectCommand,
-      addProjectAmountCommand
-      // Accounts
+      dataPathOption,
+      nameOption,
+      dateOption
     };
+    autoUpdateProjectAmountCommand.SetHandler(
+      AutoUpdateProjectAmountCommand.Execute,
+      dataPathOption,
+      nameOption,
+      dateOption);
+    commands.Add(autoUpdateProjectAmountCommand);
+  }
+
+  private static void CreateProjectionCommands(
+    ICollection<Command> commands,
+    Option<string> dataPathOption,
+    Option<DateTime> projectedDateOption
+  )
+  {
+    var projectionCommand = new Command(
+      "projection",
+      "Gets the projection for every balance at the given date")
+    {
+      dataPathOption,
+      projectedDateOption
+    };
+    projectionCommand.SetHandler(
+      ProjectionCommand.Execute,
+      dataPathOption,
+      projectedDateOption);
+    commands.Add(projectionCommand);
   }
 }

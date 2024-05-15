@@ -25,7 +25,7 @@ internal class ReadProjectCommand : AbstractCommand
       Console.WriteLine("No amounts in the project");
       return;
     }
-    
+
     foreach (var amount in project.Amounts)
       Console.WriteLine($"{amount.Date} {amount.Amount}");
   }

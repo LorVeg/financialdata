@@ -10,6 +10,11 @@ internal class AddProjectAmountCommand : AbstractCommand
     DateTime date,
     decimal amount)
   {
+    Console.WriteLine($"Using data path: {dataPath},");
+    Console.WriteLine($"project name: {name},");
+    Console.WriteLine($"date: {date}");
+    Console.WriteLine($"and amount: {amount}");
+    
     var financialData = ReadFinancialData(dataPath);
 #pragma warning disable CA1854
     if (!financialData.Projects.ContainsKey(name))
