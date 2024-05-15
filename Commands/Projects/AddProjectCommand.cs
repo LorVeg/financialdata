@@ -2,11 +2,10 @@ using FinancialData.Model;
 
 namespace FinancialData.Commands.Projects;
 
-internal class AddProjectCommand : AbstractCommand
+internal class AddProjectCommand(string dataPath,
+  string name) : AbstractCommand
 {
-  public static void Execute(
-    string dataPath,
-    string name)
+  public override async Task ExecuteAsync()
   {
     Console.WriteLine($"Using data path: {dataPath}");
     Console.WriteLine($"and project name: {name}");
@@ -23,5 +22,7 @@ internal class AddProjectCommand : AbstractCommand
     SaveFinancialData(
       dataPath,
       financialData);
+
+    await Task.CompletedTask;
   }
 }

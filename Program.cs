@@ -72,7 +72,7 @@ public static class Program
       dataPathOption
     };
     clearDatabaseCommand.SetHandler(
-      ClearDatabaseCommand.Execute,
+      async (a1) => await new ClearDatabaseCommand(a1).ExecuteAsync(),  
       dataPathOption);
     commands.Add(clearDatabaseCommand);
   }
@@ -92,7 +92,7 @@ public static class Program
       nameOption
     };
     addProjectCommand.SetHandler(
-      AddProjectCommand.Execute,
+      async (a1, a2) => await new AddProjectCommand(a1, a2).ExecuteAsync(),
       dataPathOption,
       nameOption);
     commands.Add(addProjectCommand);
@@ -104,7 +104,7 @@ public static class Program
       dataPathOption
     };
     listProjectCommand.SetHandler(
-      ListProjectCommand.Execute,
+      async (a1) => await new ListProjectCommand(a1).ExecuteAsync(),
       dataPathOption);
     commands.Add(listProjectCommand);
 
@@ -116,7 +116,7 @@ public static class Program
       nameOption
     };
     readProjectCommand.SetHandler(
-      ReadProjectCommand.Execute,
+      async (a1, a2) => await new ReadProjectCommand(a1, a2).ExecuteAsync(),
       dataPathOption,
       nameOption);
     commands.Add(readProjectCommand);
@@ -131,7 +131,7 @@ public static class Program
       amountOption
     };
     addProjectAmountCommand.SetHandler(
-      AddProjectAmountCommand.Execute,
+      async (a1, a2, a3, a4) => await new AddProjectAmountCommand(a1, a2, a3, a4).ExecuteAsync(),
       dataPathOption,
       nameOption,
       dateOption,
@@ -147,7 +147,7 @@ public static class Program
       dateOption
     };
     autoUpdateProjectAmountCommand.SetHandler(
-      AutoUpdateProjectAmountCommand.Execute,
+        async (a1, a2, a3) => await new AutoUpdateProjectAmountCommand(a1, a2, a3).ExecuteAsync(),
       dataPathOption,
       nameOption,
       dateOption);
@@ -168,7 +168,7 @@ public static class Program
       projectedDateOption
     };
     projectionCommand.SetHandler(
-      ProjectionCommand.Execute,
+      async (a1, a2) => await new ProjectionCommand(a1, a2).ExecuteAsync(),
       dataPathOption,
       projectedDateOption);
     commands.Add(projectionCommand);

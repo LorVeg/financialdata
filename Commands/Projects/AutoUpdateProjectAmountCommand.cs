@@ -1,13 +1,16 @@
 using FinancialData.Model;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
+using Nito.AsyncEx.Synchronous;
 
 namespace FinancialData.Commands.Projects;
 
-internal class AutoUpdateProjectAmountCommand : AbstractCommand
+internal class AutoUpdateProjectAmountCommand(string dataPath,
+  string name,
+  DateTime date) : AbstractCommand
 {
-  public static void Execute(
-    string dataPath,
-    string name,
-    DateTime date)
+  public override async Task  ExecuteAsync(
+    )
   {
     Console.WriteLine($"Using data path: {dataPath},");
     Console.WriteLine($"project name: {name}");
@@ -46,7 +49,9 @@ internal class AutoUpdateProjectAmountCommand : AbstractCommand
     
     while (lastDatedAmount.Date < date)
     {
-      var nextAmount = 0;
+      var nextAmountTask = EvaluateExpressionAsync(project.AutoDailyIncrease, lastDatedAmount.Amount);
+      var nextAmount = nextAmountTask.WaitAndUnwrapException();
+      
       lastDatedAmount = new DatedAmount(
         lastDatedAmount.Date.AddDays(1),
         nextAmount);
@@ -57,5 +62,22 @@ internal class AutoUpdateProjectAmountCommand : AbstractCommand
     SaveFinancialData(
       dataPath,
       financialData);
+
+    await Task.CompletedTask;
   }
+  
+  private static async Task<decimal> EvaluateExpressionAsync(string expressionBody, decimal amount)
+  {
+    var result = await CSharpScript.EvaluateAsync<decimal>(
+      expressionBody,
+      globals: new ScriptGlobals { amount = amount }
+    );
+    return result;
+  }
+}
+
+internal class ScriptGlobals
+{
+  // ReSharper disable once InconsistentNaming
+  public decimal amount;
 }

@@ -1,9 +1,9 @@
 namespace FinancialData.Commands.Projects;
 
-internal class ListProjectCommand : AbstractCommand
+internal class ListProjectCommand(string dataPath) : AbstractCommand
 {
-  public static void Execute(
-    string dataPath)
+  public override async Task ExecuteAsync(
+    )
   {
     Console.WriteLine($"Using data path: {dataPath}");
 
@@ -25,5 +25,7 @@ internal class ListProjectCommand : AbstractCommand
 
     foreach (var project in projects)
       Console.WriteLine(project.Name);
+
+    await Task.CompletedTask;
   }
 }

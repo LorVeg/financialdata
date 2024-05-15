@@ -1,10 +1,10 @@
 namespace FinancialData.Commands.Projects;
 
-internal class ReadProjectCommand : AbstractCommand
+internal class ReadProjectCommand(string dataPath,
+  string name) : AbstractCommand
 {
-  public static void Execute(
-    string dataPath,
-    string name)
+  public override async Task ExecuteAsync(
+    )
   {
     Console.WriteLine($"Using data path: {dataPath}");
     Console.WriteLine($"and project name: {name}");
@@ -28,5 +28,7 @@ internal class ReadProjectCommand : AbstractCommand
 
     foreach (var amount in project.Amounts)
       Console.WriteLine($"{amount.Date} {amount.Amount}");
+
+    await Task.CompletedTask;
   }
 }

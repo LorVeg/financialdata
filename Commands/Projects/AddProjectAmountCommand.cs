@@ -2,13 +2,12 @@ using FinancialData.Model;
 
 namespace FinancialData.Commands.Projects;
 
-internal class AddProjectAmountCommand : AbstractCommand
+internal class AddProjectAmountCommand(string dataPath,
+  string name,
+  DateTime date,
+  decimal amount) : AbstractCommand
 {
-  public static void Execute(
-    string dataPath,
-    string name,
-    DateTime date,
-    decimal amount)
+  public override async Task ExecuteAsync()
   {
     Console.WriteLine($"Using data path: {dataPath},");
     Console.WriteLine($"project name: {name},");
@@ -33,5 +32,7 @@ internal class AddProjectAmountCommand : AbstractCommand
     SaveFinancialData(
       dataPath,
       financialData);
+
+    await Task.CompletedTask;
   }
 }

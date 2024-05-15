@@ -1,10 +1,9 @@
 namespace FinancialData.Commands.Projection;
 
-internal class ProjectionCommand : AbstractCommand
+internal class ProjectionCommand(string dataPath,
+  DateTime projectedDate) : AbstractCommand
 {
-  public static void Execute(
-    string dataPath,
-    DateTime projectedDate)
+  public override async Task ExecuteAsync()
   {
     Console.WriteLine($"Using data path: {dataPath}");
     Console.WriteLine($"and date: {projectedDate}");
@@ -44,5 +43,7 @@ internal class ProjectionCommand : AbstractCommand
     Console.WriteLine("Best Account Balances:");
     foreach (var item in bestAccountBalances)
       Console.WriteLine($"{item.Key}: {item.Value}");*/
+
+    await Task.CompletedTask;
   }
 }

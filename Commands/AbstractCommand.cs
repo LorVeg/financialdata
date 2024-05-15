@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace FinancialData.Commands;
 
-internal class AbstractCommand
+internal abstract class AbstractCommand
 {
   protected static Model.FinancialData ReadFinancialData(
     string dataPath)
@@ -20,7 +20,7 @@ internal class AbstractCommand
     return financialData;
   }
 
-  protected static void BackupFinancialData(
+  protected internal static void BackupFinancialData(
     string dataPath)
   {
     if (!File.Exists(dataPath))
@@ -30,7 +30,7 @@ internal class AbstractCommand
     var fileName = Path.GetFileNameWithoutExtension(dataPath);
     var fileExtension = Path.GetExtension(dataPath);
 
-    var fileNameAndExtensions = $"{fileName}-{DateTime.Now:MM-dd-yyyy HH:mm:ss}{fileExtension}";
+    var fileNameAndExtensions = $"{fileName}-{DateTime.Now:MMddyyyyHHmmss}{fileExtension}";
     var backupFilePath = directoryPath == null ?  fileNameAndExtensions : Path.Combine(
       directoryPath,fileNameAndExtensions);
     File.Copy(dataPath, backupFilePath);
@@ -44,9 +44,13 @@ internal class AbstractCommand
 
     financialData.Sort();
 
-    var jsonData = JsonConvert.SerializeObject(financialData);
+    var jsonData = JsonConvert.SerializeObject(
+      financialData,
+      Formatting.Indented);
     File.WriteAllText(
       dataPath,
       jsonData);
   }
+
+  public abstract Task ExecuteAsync();
 }
