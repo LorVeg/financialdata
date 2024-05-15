@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/biomassrl/MEGA/Documents/FamigliaCasa/BudgetPerFondo/BudgetAnalyzer.csproj": {}
+    "D:\\Projects\\LorVeg\\financialdata\\BudgetAnalyzer.csproj": {}
   },
   "projects": {
-    "/Users/biomassrl/MEGA/Documents/FamigliaCasa/BudgetPerFondo/BudgetAnalyzer.csproj": {
+    "D:\\Projects\\LorVeg\\financialdata\\BudgetAnalyzer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/biomassrl/MEGA/Documents/FamigliaCasa/BudgetPerFondo/BudgetAnalyzer.csproj",
+        "projectUniqueName": "D:\\Projects\\LorVeg\\financialdata\\BudgetAnalyzer.csproj",
         "projectName": "BudgetAnalyzer",
-        "projectPath": "/Users/biomassrl/MEGA/Documents/FamigliaCasa/BudgetPerFondo/BudgetAnalyzer.csproj",
-        "packagesPath": "/Users/biomassrl/.nuget/packages/",
-        "outputPath": "/Users/biomassrl/MEGA/Documents/FamigliaCasa/BudgetPerFondo/obj/",
+        "projectPath": "D:\\Projects\\LorVeg\\financialdata\\BudgetAnalyzer.csproj",
+        "packagesPath": "C:\\Users\\Lorenzo.BIOMAS2000\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\LorVeg\\financialdata\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/biomassrl/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Lorenzo.BIOMAS2000\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -58,12 +58,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.19, 7.0.19]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.19, 7.0.19]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.19, 7.0.19]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.19, 7.0.19]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.105\\RuntimeIdentifierGraph.json"
         }
       }
     }
