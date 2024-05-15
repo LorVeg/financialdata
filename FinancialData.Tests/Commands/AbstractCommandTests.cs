@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace FinancialData.Commands;
+namespace FinancialData.Tests.Commands;
 
 [TestFixture]
 internal class AbstractCommandTests
