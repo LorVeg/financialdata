@@ -159,9 +159,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\LorVeg\\financialdata\\BudgetAnalyzer.csproj",
-      "projectName": "BudgetAnalyzer",
-      "projectPath": "D:\\Projects\\LorVeg\\financialdata\\BudgetAnalyzer.csproj",
+      "projectUniqueName": "D:\\Projects\\LorVeg\\financialdata\\FinancialData.csproj",
+      "projectName": "FinancialData",
+      "projectPath": "D:\\Projects\\LorVeg\\financialdata\\FinancialData.csproj",
       "packagesPath": "C:\\Users\\Lorenzo.BIOMAS2000\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\LorVeg\\financialdata\\obj\\",
       "projectStyle": "PackageReference",

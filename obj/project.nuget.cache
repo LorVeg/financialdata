@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lvw4NW+DwhRcww6ljdtuaUzcyBLXPBdv684f4wWcjbgnXYoBPAgQdyNJoU9bTJODiHGxok4l2j+S+TzGc9gC0A==",
+  "dgSpecHash": "ZH8/cX228FwWMs+D8+BHxIr1KzBPwX71yW12sHACeKuOK26TsWbJFY3vP97GwXsCnxXrW4odQCGgu0lygBO+4g==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\LorVeg\\financialdata\\BudgetAnalyzer.csproj",
+  "projectFilePath": "D:\\Projects\\LorVeg\\financialdata\\FinancialData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lorenzo.BIOMAS2000\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Lorenzo.BIOMAS2000\\.nuget\\packages\\system.commandline\\2.0.0-beta4.22272.1\\system.commandline.2.0.0-beta4.22272.1.nupkg.sha512",
